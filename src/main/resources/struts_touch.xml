@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="touch" namespace="/touch" extends="default">
+        
+<!--         <interceptors> -->
+<!--             <interceptor name="auth" class="jp.co.fcctvweb.interceptors.AuthInterceptor" /> -->
+            
+<!--             <interceptor-stack name="authStack"> -->
+<!--                 <interceptor-ref name="basicStack"/> -->
+<!--                 <interceptor-ref name="auth"/> -->
+<!--             </interceptor-stack> -->
+<!--         </interceptors> -->
+
+<!--         <default-interceptor-ref name="authStack"></default-interceptor-ref> -->
+        <action name="index" class="jp.co.fcctvweb.actions.UserAction" method="retrieveLogin">
+            <interceptor-ref name="basicStack" />
+            <result>index.jsp</result>
+            <result type="json" name="json"></result>
+        </action>
+        
+        <action name="logout" class="jp.co.fcctvweb.actions.UserAction" method="logout">
+            <interceptor-ref name="basicStack" />
+            <result>index.jsp</result>
+            <result type="json" name="json"></result>
+        </action>
+        
+
+        <action name="touch" class="jp.co.fcctvweb.actions.BasicJsonAction">
+            <interceptor-ref name="basicStack" />
+            <result>index.jsp</result>
+        </action>
+        
+        <action name="detect" class="jp.co.fcctvweb.actions.client.RequestDetectAction">
+            <result type="json" name="json"></result>
+        </action>
+        
+        <action name="queryEmpty" class="jp.co.fcctvweb.actions.BasicJsonAction" method="emptyJson"><result type="json" name="json"/></action>
+        <action name="queryVideo" class="jp.co.fcctvweb.actions.QueryVideoAction" method="query" ><result type="json" name="json"></result></action>
+        <action name="addFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="addFavorite"><result type="json" name="json"></result></action>
+        <action name="removeFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="removeFavorite"><result type="json" name="json"></result></action>
+        <action name="addMyFileFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="addMyFileFavorite"><result type="json" name="json"></result></action>
+        <action name="removeMyFileFavorite" class="jp.co.fcctvweb.actions.FavoriteAction" method="removeMyFileFavorite"><result type="json" name="json"></result></action>
+        
+        <action name="prepareVideo" class="jp.co.fcctvweb.actions.client.PhoneVideoAction"><result type="json" name="json"></result></action>
+        
+        <action name="watch" class="jp.co.fcctvweb.actions.IoAction">
+        	<result name="video" type="stream">
+        		<param name="contentType">video/mp4</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">2048</param>
+                <param name="allowCaching">true</param>
+                <param name="contentDisposition">filename="play.mp4"</param>
+        	</result>
+        	<result name="mp3" type="stream">
+        		<param name="contentType">audio/mp3</param>
+                <param name="inputName">inputStream</param>
+        	</result>
+        	<result name="jpeg" type="stream">
+        		<param name="contentType">image/jpeg</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">1024</param> 
+        	</result>
+        	<result name="doc" type="stream">
+        		<param name="contentType">application/msword</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">2048</param>
+                <param name="allowCaching">true</param>
+        	</result>
+            <result name="docx" type="stream">
+        		<param name="contentType">application/vnd.openxmlformats-officedocument.wordprocessingml.document</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">filename="download.docx"</param>
+        	</result>    	
+        	<result name="pdf" type="stream">
+        		<param name="contentType">application/pdf</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">2048</param>
+                <param name="allowCaching">true</param>
+        	</result>
+            <result name="txt" type="stream">
+                <param name="contentType">text/plain</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            <result name="xlsx" type="stream">
+                <param name="contentType">application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            <result name="xls" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">inputStream</param>
+            </result>
+            
+        	<result name="json"></result>
+        	<result name="ajax"></result>
+        	<interceptor-ref name="defaultStack"/>
+       	</action>
+        <action name="thumbs" class="jp.co.fcctvweb.actions.IoAction">
+        	<result name="video" type="stream">
+        		<param name="contentType">video/mp4</param>
+                <param name="inputName">inputStream</param>
+        	</result>
+        	<result name="jpeg" type="stream">
+        		<param name="contentType">image/jpeg</param>
+                <param name="inputName">inputStream</param>
+                <param name="bufferSize">1024</param>
+        	</result>
+        </action>
+        
+        <action name="queryMyFile" class="jp.co.fcctvweb.actions.QueryMyFileAction" method="query" ><result type="json" name="json"></result></action>
+        <action name="retrieveDocTree" class="jp.co.fcctvweb.actions.MyDocAction" method="retrieveDocTree" ><result type="json" name="json"></result></action>
+        <action name="retrieveDocFlatDir" class="jp.co.fcctvweb.actions.MyDocAction" method="retrieveDocFlatDir" ><result type="json" name="json"></result></action>
+        
+        <action name="docAnalyze" class="jp.co.fcctvweb.actions.client.DocAnalyzeAction"><result type="json" name="json"></result></action>
+        <action name="photoPrev" class="jp.co.fcctvweb.actions.PhotoPreviewAction"><result name="success">photo_prev.jsp</result></action>
+        <action name="changeDocDir" class="jp.co.fcctvweb.actions.MyDocAction" method="changeDocDir"><result name="success">doc_prev.jsp</result></action>
+        
+        <action name="photoAmount" class="jp.co.fcctvweb.actions.MyPhotoAction" method="photoAmount"><result name="json" type="json"></result></action>
+        
+        <action name="retrieveChannels" class="jp.co.fcctvweb.actions.ChannelAction"><result name="json" type="json"></result></action>
+        
+        <action name="getHddInfo" class="jp.co.fcctvweb.actions.HardwareAction" method="getHddInfo"><result name="json" type="json"></result></action>
+        <action name="getChannelInfo" class="jp.co.fcctvweb.actions.ChannelAction" method="getChannelInfo"><result name="json" type="json"></result></action>
+        <action name="getTunners" class="jp.co.fcctvweb.actions.HardwareAction" method="getTunners"><result name="json" type="json"></result></action>
+        <action name="getTvTerminalId" class="jp.co.fcctvweb.actions.HardwareAction" method="getTvTerminalId"><result name="json" type="json"></result></action>
+        <action name="getSoftwareId" class="jp.co.fcctvweb.actions.HardwareAction" method="getSoftwareId"><result name="json" type="json"></result></action>
+        <action name="getMovieExpire" class="jp.co.fcctvweb.actions.HardwareAction" method="getMovieExpire"><result name="json" type="json"></result></action>
+        <action name="changeMovieExpire" class="jp.co.fcctvweb.actions.HardwareAction" method="changeMovieExpire"><result name="json" type="json"></result></action>
+        
+        <action name="hddFormat" class="jp.co.fcctvweb.actions.HardwareAction" method="hddFormat"><result name="json" type="json"></result></action>
+        <action name="hddList" class="jp.co.fcctvweb.actions.HardwareAction" method="hddList"><result name="json" type="json"></result></action>
+        <action name="deviceReset" class="jp.co.fcctvweb.actions.HardwareAction" method="deviceReset"><result name="json" type="json"></result></action>
+        <action name="deviceShutdown" class="jp.co.fcctvweb.actions.HardwareAction" method="deviceShutdown"><result name="json" type="json"></result></action>
+         
+        
+        
+<!--         <action name="test" class="jp.co.fcctvweb.actions.TestAction"><result name="json"/></action> -->
+    </package>
+</struts>

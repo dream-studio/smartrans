@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.objectFactory.spring.autoWire" value="name" />
+    <constant name="struts.multipart.parser" value="jakarta" />
+
+    <!-- uses javax.servlet.context.tempdir by default -->
+    <constant name="struts.multipart.saveDir" value="" />
+    <constant name="struts.multipart.maxSize" value="1073741824" />
+<!--     <constant name="struts.multipart.maxSize" value="2097152" /> -->
+
+    <!-- Used by the DefaultActionMapper -->
+    <!-- You may provide a comma separated list, e.g. struts.action.extension=action,jnlp,do -->
+    <!-- The blank extension allows you to match directory listings as well 
+        as pure action names -->
+    <!-- without interfering with static resources. -->
+<!--     <constant name="struts.action.extension" value="action" /> -->
+
+    <!-- Load custom default resource bundles -->
+    <constant name="struts.custom.i18n.resources" value="messages," />
+
+    <package name="convention" extends="json-default">
+    	<interceptors>
+    		<interceptor name="auth" class="com.cd.careserver.interceptor.AuthInterceptor" />
+    		<interceptor name="jsonpWrapper" class="com.cd.careserver.interceptor.JsonpWrapperInterceptor"></interceptor>
+    		
+    		<interceptor-stack name="authStack">
+          <interceptor-ref name="basicStack"/>
+          <interceptor-ref name="auth"/>
+        </interceptor-stack>
+        
+    	</interceptors>
+
+		  <default-interceptor-ref name="authStack"></default-interceptor-ref>
+
+    </package>
+    
+    
+    
+<!--     <package name="uploader" namespace="/uploader" extends="default"> -->
+<!--         <default-interceptor-ref name="fileUploadStack"/> -->
+        
+<!--         <action name="uploadFiles" class="actions.upload.UploadAction"> -->
+<!--             <result type="json" name="json"></result> -->
+<!--         </action> -->
+<!--     </package> -->
+</struts>
