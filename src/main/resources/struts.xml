@@ -26,8 +26,8 @@
 
     <package name="convention" extends="json-default">
     	<interceptors>
-    		<interceptor name="auth" class="com.cd.careserver.interceptor.AuthInterceptor" />
-    		<interceptor name="jsonpWrapper" class="com.cd.careserver.interceptor.JsonpWrapperInterceptor"></interceptor>
+    		<interceptor name="auth" class="com.dream.smartrans.interceptor.AuthInterceptor" />
+<!--     		<interceptor name="jsonpWrapper" class="com.dream.smartrans.interceptor.JsonpWrapperInterceptor"></interceptor> -->
     		
     		<interceptor-stack name="authStack">
           <interceptor-ref name="basicStack"/>
