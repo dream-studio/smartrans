@@ -75,32 +75,32 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 			</list>
 		</property>
 	</bean>
-  <bean id="c3p0DS" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-    destroy-method="close">
-    <property name="driverClass" value="com.mysql.jdbc.Driver" />
-    <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/smart_trans?autoReconnect=true&amp;unicode=true&amp;characterEncoding=utf8" />
-    <property name="user" value="root" />
-    <property name="password" value="root" />
+<!--   <bean id="c3p0DS" class="com.mchange.v2.c3p0.ComboPooledDataSource" -->
+<!--     destroy-method="close"> -->
+<!--     <property name="driverClass" value="com.mysql.jdbc.Driver" /> -->
+<!--     <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/smart_trans?autoReconnect=true&amp;unicode=true&amp;characterEncoding=utf8" /> -->
+<!--     <property name="user" value="root" /> -->
+<!--     <property name="password" value="root" /> -->
 
-    <!--连接池中保留的最小连接数。 -->
-    <property name="minPoolSize" value="10" />
-    <!--连接池中保留的最大连接数。Default: 15 -->
-    <property name="maxPoolSize" value="15" />
-    <!--初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
-    <property name="initialPoolSize" value="5" />
-    <!--最大空闲时间,600秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
-    <property name="maxIdleTime" value="600" />
-    <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
-    <property name="acquireIncrement" value="5" />
-    <!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
-    <property name="idleConnectionTestPeriod" value="60" />
+<!--     连接池中保留的最小连接数。 -->
+<!--     <property name="minPoolSize" value="10" /> -->
+<!--     连接池中保留的最大连接数。Default: 15 -->
+<!--     <property name="maxPoolSize" value="15" /> -->
+<!--     初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3 -->
+<!--     <property name="initialPoolSize" value="5" /> -->
+<!--     最大空闲时间,600秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+<!--     <property name="maxIdleTime" value="600" /> -->
+<!--     当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+<!--     <property name="acquireIncrement" value="5" /> -->
+<!--     每60秒检查所有连接池中的空闲连接。Default: 0 -->
+<!--     <property name="idleConnectionTestPeriod" value="60" /> -->
     
 <!--      获取连接失败将会引起所有等待连接池来获取连接的线程抛出异常。但是数据源仍有效 -->
 <!--      保留，并在下次调用getConnection()的时候继续尝试获取连接。如果设为true，那么在尝试 -->
 <!--      获取连接失败后该数据源将申明已断开并永久关闭。Default: false -->
 
-    <property name="breakAfterAcquireFailure" value="false" />
-  </bean>
+<!--     <property name="breakAfterAcquireFailure" value="false" /> -->
+<!--   </bean> -->
 
 	<bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
@@ -177,71 +177,18 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 
 	<!-- Beans -->
 	<!-- Beans -->
-<!-- 	<bean id="pendingRequestService" class="com.cd.careserver.service.impl.PendingRequestServiceImpl" > -->
-<!-- 		<property name="pendingRequestDao" ref="pendingRequestDao" /> -->
-<!-- 	</bean> -->
-<!--   <bean id="systemService" class="com.cd.careserver.service.impl.SystemServiceImpl" > -->
-<!--     <property name="userDao" ref="userDao" /> -->
-<!--   </bean> -->
-<!--   <bean id="doctorService" class="com.cd.careserver.service.impl.DoctorServiceImpl" > -->
-<!--     <property name="doctorDao" ref="doctorDao" /> -->
-<!--   </bean> -->
-<!--   <bean id="customerService" class="com.cd.careserver.service.impl.CustomerServiceImpl" > -->
-<!--     <property name="customerDao" ref="customerDao" /> -->
-<!--     <property name="doctorCustomerDao" ref="doctorCustomerDao" /> -->
-<!--   </bean> -->
-<!--   <bean id="ecgService" class="com.cd.careserver.service.impl.EcgServiceImpl" > -->
-<!--     <property name="ecgMixedDao" ref="ecgMixedDao" /> -->
-<!--     <property name="ecgDataDao" ref="ecgDataDao" /> -->
-<!--     <property name="doctorEcgDao" ref="doctorEcgDao" /> -->
-<!--     <property name="fileTransferService" ref="fileTransferService" /> -->
-<!--   </bean> -->
-<!--   <bean id="userService" class="com.cd.careserver.service.impl.UserServiceImpl" > -->
-<!--     <property name="userDao" ref="userDao" /> -->
-<!--   </bean> -->
-<!--   <bean id="fileTransferService" class="com.cd.careserver.service.impl.FileTransferServiceImpl" > -->
-<!--   </bean> -->
-<!--   <bean id="diagnosisService" class="com.cd.careserver.service.impl.DiagnosisServiceImpl" > -->
-<!--     <property name="diagnosisDao" ref="diagnosisDao" /> -->
-<!--     <property name="pendingResponseService" ref="pendingResponseService" /> -->
-<!--   </bean> -->
-<!--   <bean id="pendingResponseService" class="com.cd.careserver.service.impl.PendingResponseServiceImpl" > -->
-<!--     <property name="pendingResponseDao" ref="pendingResponseDao" /> -->
-<!--   </bean> -->
-  
+	<bean id="vehicleService" class="com.dream.smartrans.service.impl.VehicleServiceImpl" >
+		<property name="vehicleDao" ref="vehicleDao" />
+		<property name="vehicleLocationDao" ref="vehicleLocationDao" />
+	</bean>
 
    	<!-- Daos -->
    	<!-- Daos -->
-<!-- 	<bean id="pendingRequestDao" class="com.cd.careserver.dao.impl.PendingRequestDaoImpl"> -->
-<!-- 		<property name="dataSource" ref="c3p0DataSource" /> -->
-<!-- 	</bean> -->
-<!--   <bean id="userDao" class="com.cd.careserver.dao.impl.UserDaoImpl"> -->
-<!--     <property name="dataSource" ref="c3p0DataSource" /> -->
-<!--   </bean> -->
-<!--   <bean id="customerDao" class="com.cd.careserver.dao.impl.CustomerDaoImpl"> -->
-<!--     <property name="dataSource" ref="c3p0DataSource" /> -->
-<!--   </bean> -->
-<!--   <bean id="doctorDao" class="com.cd.careserver.dao.impl.DoctorDaoImpl"> -->
-<!--     <property name="dataSource" ref="c3p0DataSource" /> -->
-<!--   </bean> -->
-<!-- 	<bean id="doctorCustomerDao" class="com.cd.careserver.dao.impl.DoctorCustomerDaoImpl"> -->
-<!--     <property name="dataSource" ref="c3p0DataSource" /> -->
-<!--   </bean> -->
-<!--   <bean id="ecgMixedDao" class="com.cd.careserver.dao.impl.EcgMixedDaoImpl"> -->
-<!--     <property name="dataSource" ref="c3p0DataSource" /> -->
-<!--   </bean> -->
-<!--   <bean id="ecgDataDao" class="com.cd.careserver.dao.impl.EcgDataDaoImpl"> -->
-<!--     <property name="dataSource" ref="c3p0DataSource" /> -->
-<!--   </bean> -->
-<!--   <bean id="doctorEcgDao" class="com.cd.careserver.dao.impl.DoctorEcgDaoImpl"> -->
-<!--     <property name="dataSource" ref="c3p0DataSource" /> -->
-<!--   </bean> -->
-<!--   <bean id="diagnosisDao" class="com.cd.careserver.dao.impl.DiagnosisDaoImpl"> -->
-<!--     <property name="dataSource" ref="c3p0DataSource" /> -->
-<!--   </bean> -->
-<!--   <bean id="pendingResponseDao" class="com.cd.careserver.dao.impl.PendingResponseDaoImpl"> -->
-<!--     <property name="dataSource" ref="c3p0DataSource" /> -->
-<!--   </bean> -->
-  
+	<bean id="vehicleDao" class="com.dream.smartrans.dao.impl.VehicleDaoImpl">
+		<property name="dataSource" ref="c3p0DataSource" />
+	</bean>
+  <bean id="vehicleLocationDao" class="com.dream.smartrans.dao.impl.VehicleLocationDaoImpl">
+    <property name="dataSource" ref="c3p0DataSource" />
+  </bean>
 </beans>
 

@@ -22,7 +22,7 @@ drop table if exists notice;
 
 drop table if exists notice_history;
 
-drop table if exists "order";
+drop table if exists orders;
 
 drop table if exists points;
 
@@ -180,9 +180,9 @@ create table notice_history
 );
 
 /*==============================================================*/
-/* Table: "order"                                               */
+/* Table: "orders"                                               */
 /*==============================================================*/
-create table "order"
+create table orders
 (
    id                   char(32) not null,
    driver_id            char(32),
@@ -265,9 +265,9 @@ create table vehicle
    id                   char(32) not null,
    name                 varchar(64),
    type                 int(2),
-   "load"               int(8),
+   car_load               int(8),
    creation_time        datetime,
-   last_updat           datetime,
+   last_update           datetime,
    primary key (id)
 );
 
@@ -280,9 +280,9 @@ create table vehicle_location
    vehicle_id           char(32),
    lng                  int(11),
    lat                  int(11),
-   lon_lat              char(24),
+   lng_lat              char(24),
    creation_time        datetime,
-   last_updat           datetime,
+   last_update           datetime,
    primary key (id)
 );
 

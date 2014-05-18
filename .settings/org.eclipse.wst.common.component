@@ -7,6 +7,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <property name="java-output-path" value="/trans/target/classes"/>
-        <property name="context-root" value="snartrans"/>
+        <property name="context-root" value="smartrans"/>
     </wb-module>
 </project-modules>

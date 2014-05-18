@@ -21,4 +21,6 @@ public class Config {
 	public static String getEcgLocalDir(){
 		return configuration.getString("ecg.local.dir");
 	}
+	
+	public static final int GPS_APPROXIMATION = 100000;
 }
