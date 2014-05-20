@@ -63,7 +63,6 @@ create table customer
    id                   char(32) not null,
    user_id              char(32),
    name                 varchar(64),
-   type                 int(2),
    iden                 char(18),
    nick_name            varchar(64),
    sex                  int(1),
@@ -285,4 +284,5 @@ create table vehicle_location
    last_update           datetime,
    primary key (id)
 );
+
 
