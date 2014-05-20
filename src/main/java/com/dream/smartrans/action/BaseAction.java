@@ -20,6 +20,8 @@ public abstract class BaseAction extends ActionSupport {
 	
 	public abstract String invalidUser();
 	
+	public abstract boolean testUser();
+	
 	protected void setSuccess(){
 		this.setSuccess(0, "");
 	}

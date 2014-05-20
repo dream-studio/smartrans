@@ -181,6 +181,9 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="vehicleDao" ref="vehicleDao" />
 		<property name="vehicleLocationDao" ref="vehicleLocationDao" />
 	</bean>
+	<bean id="systemService" class="com.dream.smartrans.service.impl.SystemServiceImpl" >
+    <property name="userDao" ref="userDao" />
+  </bean>
 
    	<!-- Daos -->
    	<!-- Daos -->
@@ -188,6 +191,12 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="dataSource" ref="c3p0DataSource" />
 	</bean>
   <bean id="vehicleLocationDao" class="com.dream.smartrans.dao.impl.VehicleLocationDaoImpl">
+    <property name="dataSource" ref="c3p0DataSource" />
+  </bean>
+  <bean id="customerDao" class="com.dream.smartrans.dao.impl.CustomerDaoImpl">
+    <property name="dataSource" ref="c3p0DataSource" />
+  </bean>
+  <bean id="userDao" class="com.dream.smartrans.dao.impl.UserDaoImpl">
     <property name="dataSource" ref="c3p0DataSource" />
   </bean>
 </beans>

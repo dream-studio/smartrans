@@ -28,24 +28,19 @@ public class AuthInterceptor implements Interceptor {
 		
 		Object action = invocation.getAction();
 		
-//		User u = (User) request.getSession()
-//				.getAttribute(User.SESSION_USER_KEY);
-//		if (u == null) {
-//			if (action instanceof APIAction){
-//				APIAction api = (APIAction) action;
-//				if (api.testUser()){
-//					result = invocation.invoke();
-//				}else{
-//					result = api.invalidUser();
-//				}
-//			}else{
-//				BaseAction ba = (BaseAction) invocation.getAction();
-//				result = ba.invalidUser();
-//			}
-//		} else {
-//			result = invocation.invoke();
-//		}
-//		
+		User u = (User) request.getSession()
+				.getAttribute(User.SESSION_USER_KEY);
+		if (u == null) {
+			BaseAction ba = (BaseAction) action;
+			if (ba.testUser()){
+				result = invocation.invoke();
+			}else{
+				result = ba.invalidUser();
+			}
+		} else {
+			result = invocation.invoke();
+		}
+		
 		result = invocation.invoke();
 		
 		return result;

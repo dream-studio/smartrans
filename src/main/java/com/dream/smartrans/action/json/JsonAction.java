@@ -24,6 +24,11 @@ public class JsonAction extends BaseAction {
 		this.setFailure("Invalid User!");
 		return JSON;
 	}
+	
+	@Override
+	public boolean testUser() {
+		return false;
+	}
 
 	public String execute() {
 		reply.setMsg("It Works!!");

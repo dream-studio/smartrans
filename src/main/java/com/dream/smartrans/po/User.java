@@ -1,5 +1,8 @@
 package com.dream.smartrans.po;
 
+import com.dream.smartrans.dict.UserStatus;
+import com.dream.smartrans.dict.UserType;
+
 public class User {
 
 	public static final String SESSION_USER_KEY = "user_key_in_session";
@@ -7,8 +10,8 @@ public class User {
 	private String id;
 	private String username;
 	private String password;
-	private int status;
-	private int type;
+	private UserStatus status;
+	private UserType type;
 	
 	public String getId() {
 		return id;
@@ -22,16 +25,16 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public int getStatus() {
+	public UserStatus getStatus() {
 		return status;
 	}
-	public void setStatus(int status) {
+	public void setStatus(UserStatus status) {
 		this.status = status;
 	}
-	public int getType() {
+	public UserType getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(UserType type) {
 		this.type = type;
 	}
 	public String getPassword() {

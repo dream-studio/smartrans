@@ -10,6 +10,9 @@ public enum CarType {
 	REFRIGERATED(6); 			// 冷藏
 
 	private int value;
+	public int getValue(){
+		return value;
+	}
 
 	CarType(int value) {
 		this.value = value;
